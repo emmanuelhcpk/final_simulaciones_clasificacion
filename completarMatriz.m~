@@ -13,7 +13,6 @@ function matrizCompleta = completarMatriz(a, columnascontinuas)
                 indexCompleta = ~ismember(columna, '?'); % Indice de los elementos en la matriz diferentes de ? 
                 columnaNumerica = str2double(columna(indexCompleta)) % Se combierten a doubles todos los valores numericos en la matriz
                 media = mean(columnaNumerica); % Se halla la media
-                media = sprintf('%f', media);
                 columna(ismember(columna, '?')) = {media}%se remplezan los valores de ? por la media
             else
                 columna = arrayfun(@num2str, columna, 'Uniform', false);
