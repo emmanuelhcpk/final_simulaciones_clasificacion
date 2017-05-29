@@ -36,6 +36,9 @@ for c=1:1
             XtestN = (Xtest - repmat(mu,size(Xtest,1),1))./repmat(sigma,size(Xtest,1),1);
             totalUNOTrain = sum(Ytrain==0);
             totalDOSTrain = sum(Ytrain==1);
+            
+            XtestN = XtestN(:,~sum(isnan(XtestN)));
+            XtrainN = XtrainN(:,~sum(isnan(XtestN)));
 
             matrizConfusion = zeros(2,2);
 
