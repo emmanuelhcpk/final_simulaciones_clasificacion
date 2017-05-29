@@ -17,7 +17,7 @@ totalDatos = length(muestras);
 % totalUNO = sum(muestras(:,7)==1);
 % totalDOS = sum(muestras(:,7)==2);
 % totalTRES = sum(muestras(:,7)==3);
-iteraciones = 10;
+iteraciones = 30;
 vectorEficiencia = zeros(iteraciones,1);
 sensibTest = zeros(iteraciones,1);
 especifi =  zeros(iteraciones,1);
@@ -34,8 +34,8 @@ for c=1:1
             %Normalizamos conjuntos de entrenamiento
             [XtrainN,mu,sigma] = zscore(Xtrain);
             XtestN = (Xtest - repmat(mu,size(Xtest,1),1))./repmat(sigma,size(Xtest,1),1);
-            totalUNOTrain = sum(Ytrain==1);
-            totalDOSTrain = sum(Ytrain==2);
+            totalUNOTrain = sum(Ytrain==0);
+            totalDOSTrain = sum(Ytrain==1);
 
             matrizConfusion = zeros(2,2);
 
@@ -44,7 +44,8 @@ for c=1:1
           %  modeloSVM = svmtrain(XtrainN,Ytrain,'boxconstraint',vectorC(c),'kernel_function','linear');
             options.MaxIter = 3000000;
             tiempoEntrena = tic;
-            modeloSVM = svmtrain(XtrainN,Ytrain,'Options',options,'boxconstraint',100,'kernel_function','rbf','rbf_sigma',10);
+            modeloSVM =trainlssvm({X,Y,tipo,boxConstraint,sigma,'lin_kernel'});
+            %%modeloSVM = svmtrain(XtrainN,Ytrain,'Options',options,'boxconstraint',100,'kernel_function','rbf','rbf_sigma',10);
 %           modeloSVM = svmtrain(XtrainN,Ytrain,'Options',options,'boxconstraint',1,'kernel_function','linear');
 %           modeloSVM_DOS_DEMAS = svmtrain(claseDOS_DEMAS,YDOS_DEMAS,'boxconstraint',vectorC(c),'kernel_function','linear' );
          %  modeloSVM_TRES_DEMAS = svmtrain(claseTRES_DEMAS,YTRES_DEMAS,'boxconstraint',vectorC(c),'kernel_function','linear' );

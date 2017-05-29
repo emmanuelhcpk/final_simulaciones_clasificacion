@@ -2,6 +2,7 @@ function [ Xtrain , Ytrain, Xtest, Ytest] = splitData( Group, percentage )
 %   Funcion para realizar bootstrap sobre las muestras
 
     %tamano total X
+    disp('Split');
     totalDatos = size(Group,1);
     totalTrain = (totalDatos*percentage)/100;
     totalTest = totalDatos - totalTrain;

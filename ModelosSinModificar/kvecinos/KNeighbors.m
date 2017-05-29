@@ -2,10 +2,10 @@ function Yest = KNeighbors(Xtrain, Ytrain, Xval, Yval, K, isRegression)
     N = size(Xval, 1);
     Yest = zeros(N, 1);
     
-    m = mean(Xtrain);
-    s = std(Xtrain);
-    Xtrain_temp = zscoreadaptado(Xtrain, m, s,size(Xtrain,1));
-    Xval_temp = zscoreadaptado(Xval, m, s,size(Xval,1));
+    %m = mean(Xtrain);
+    %s = std(Xtrain);
+    %Xtrain_temp = zscoreadaptado(Xtrain, m, s,size(Xtrain,1));
+    %Xval_temp = zscoreadaptado(Xval, m, s,size(Xval,1));
     
     for i = 1:N
        distances = CalculateEuclideanDistance(Xtrain_temp, Xval_temp(i, :));

@@ -1,12 +1,12 @@
-muestras = DatosBalanceados;
+muestras = [X Y];
 
-X = muestras(:, 1:end-1);
-Y = muestras(:, end);
+X1 = muestras(:, 1:end-1);
+Y1 = muestras(:, end);
 %----- First output.
 
 opts = statset('display','iter');
 
-indices  = sequentialfs(@FisherCriterial2, X, Y, 'options',opts);
+indices  = sequentialfs(@FisherCriterial2, X1, Y1);
 
 indices = [indices,1];
 

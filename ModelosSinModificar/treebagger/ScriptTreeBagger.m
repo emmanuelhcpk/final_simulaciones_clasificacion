@@ -16,6 +16,7 @@ ErrorTest = zeros(1,Rept);
 Pres = zeros(1,Rept);
 time= tic;
 for fold = 1:Rept
+    disp(fold)
     %Separaci??n de los conjuntos de entrenamiento y validaci??n
     [ Xtrain , Ytrain, Xtest, Ytest] = splitData(Data,70);
     %----------------------------------------------------------------------

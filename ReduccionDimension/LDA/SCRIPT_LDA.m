@@ -14,7 +14,7 @@ especi = zeros(iters,1);
 presi = zeros(iters,1);
 bestLDAs = struct('errorTrain', 0,'IC_train',0, 'errorTest', 0,'IC_test',0, 'NC', 0, ...
     'sen',0,'esp',0,'pres', 0);
-muestras = DatosBalanceados;
+muestras = [X Y];
 
 for nc = 1:size(numComp, 2)
     [Xtrain, Ytrain, Xtest, Ytest] = splitData(muestras, 70);
