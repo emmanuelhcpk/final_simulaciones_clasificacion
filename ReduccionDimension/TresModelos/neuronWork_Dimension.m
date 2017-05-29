@@ -10,7 +10,7 @@ function [error,IC, sensibilidad, especificidad, presicion] = neuronWork_Dimensi
                     Data = [X,Y];
                     [ XtrainN , Ytrain, XtestN, Ytest] = splitData(Data,70);
                     %----------------------------------------------------------------------
-                    %------------- Normalización ------------------------------------------
+                    %------------- Normalizaci??n ------------------------------------------
 %                     [XtrainN,mu,sigma] = zscore(Xtrain);
 %                     XtestN = (Xtest - repmat(mu,size(Xtest,1),1))./repmat(sigma,size(Xtest,1),1);
                     
@@ -38,10 +38,13 @@ function [error,IC, sensibilidad, especificidad, presicion] = neuronWork_Dimensi
                     
                     matrizConfusion = zeros(2,2);
                     Ytest = Ytest';
-                    Yest = Yest';
+                    Yest = Yest'
                     
                     for i=1:size(Yest,1)
-                         matrizConfusion(Yest(i),Ytest(i)) =  matrizConfusion(Yest(i),Ytest(i)) + 1;
+                         if Yest(i) == 1 ||  Yest(i) == 0
+                            
+                            matrizConfusion(Yest(i)+1,Ytest(i)+1) =  matrizConfusion(Yest(i)+1 ,Ytest(i)+1) + 1;
+                         end
                     end
                     
                     error = 1 - (sum(diag(matrizConfusion)))/sum(matrizConfusion(:));

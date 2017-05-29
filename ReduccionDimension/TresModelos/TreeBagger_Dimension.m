@@ -15,25 +15,25 @@ Y = [Ytrain;Ytest];
 muestras = [X,Y];
 
 for fold = 1:Rept
-    %Separación de los conjuntos de entrenamiento y validación
+    %Separaci??n de los conjuntos de entrenamiento y validaci??n
     [ XtrainN , Ytrain, XtestN, Ytest] = splitData(muestras,70);
     %----------------------------------------------------------------------
-    %------------- Normalización ------------------------------------------
+    %------------- Normalizaci??n ------------------------------------------
 %     [XtrainN,mu,sigma] = zscore(Xtrain);
 %     XtestN = (Xtest - repmat(mu,size(Xtest,1),1))./repmat(sigma,size(Xtest,1),1);
     %----------------------------------------------------------------------
     %------------- Entrenamiento ------------------------------------------  
     perm = randperm(5);
-    Modelo = TreeBagger(NumArboles, XtrainN, Ytrain, 'oobpred', 'on','NVarToSample',perm(3));     % Obteniendo �r.
+    Modelo = TreeBagger(NumArboles, XtrainN, Ytrain, 'oobpred', 'on','NVarToSample',perm(3));     % Obteniendo ???r.
 
      %----------------------------------------------------------------------
-    %------------- Validaci�n ---------------------------------------------
-    Yest = predict(Modelo, XtestN);        % Invocaci�n a la validaci�n.
-    Yest = convertcell2double(Yest);            % M�todo de utilidad.
+    %------------- Validaci???n ---------------------------------------------
+    Yest = predict(Modelo, XtestN);        % Invocaci???n a la validaci???n.
+    Yest = convertcell2double(Yest);           % M???todo de utilidad.
     
    MatrizConfusion = zeros(2,2);
    for i=1:size(XtestN,1)
-     MatrizConfusion(Yest(i),Ytest(i)) = MatrizConfusion(Yest(i),Ytest(i)) + 1;
+     MatrizConfusion(Yest(i)+1,Ytest(i)+1) = MatrizConfusion(Yest(i)+1,Ytest(i)+1) + 1;
    end
    EfiTest(fold) = sum(diag(MatrizConfusion))/sum(sum(MatrizConfusion));
    sensibTest(fold) = (MatrizConfusion(1,1)/sum(MatrizConfusion(1,1)+MatrizConfusion(2,1)));

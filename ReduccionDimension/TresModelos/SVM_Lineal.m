@@ -36,7 +36,9 @@ muestras = [X,Y];
            Yest = desicion;
 
            for i=1:size(Yest,1)
-                   matrizConfusion(Yest(i),Ytest(i)) =  matrizConfusion(Yest(i),Ytest(i)) + 1;
+               if Yest(i) == 1 ||  Yest(i) == 0
+                   matrizConfusion(Yest(i)+1,Ytest(i)+1) =  matrizConfusion(Yest(i)+1,Ytest(i)+1) + 1;
+               end
            end
 
     vectorEficiencia(itera) = (sum(diag(matrizConfusion)))/sum(matrizConfusion(:));

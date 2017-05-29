@@ -21,18 +21,17 @@ for fold = 1:Rept
     [ Xtrain , Ytrain, Xtest, Ytest] = splitData(Data,70);
     %----------------------------------------------------------------------
     %------------- Normalizaci??n ------------------------------------------
-    [XtrainN,mu,sigma] = zscore(Xtrain);
-    XtestN = (Xtest - repmat(mu,size(Xtest,1),1))./repmat(sigma,size(Xtest,1),1);
+    %[XtrainN,mu,sigma] = zscore(Xtrain);
+    %XtestN = (Xtest - repmat(mu,size(Xtest,1),1))./repmat(sigma,size(Xtest,1),1);
     %----------------------------------------------------------------------
     %------------- Entrenamiento ------------------------------------------  
     perm = randperm(5);
-    
-    Modelo = TreeBagger(NumArboles, XtrainN, Ytrain, 'oobpred', 'on','NVarToSample',perm(3));     % Obteniendo ???r.
+    Modelo = TreeBagger(NumArboles, Xtrain, Ytrain, 'oobpred', 'on','NVarToSample',perm(3));     % Obteniendo ???r.
     
      %----------------------------------------------------------------------
     %------------- Validaci???n ---------------------------------------------
     
-    Yest = predict(Modelo, XtestN);        % Invocaci???n a la validaci???n.
+    Yest = predict(Modelo, Xtest);        % Invocaci???n a la validaci???n.
     Yest = convertcell2double(Yest);            % M???todo de utilidad.
     
    MatrizConfusion = zeros(Nc,Nc);
