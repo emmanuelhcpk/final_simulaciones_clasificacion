@@ -26,7 +26,9 @@ for fold = 1:Rept
     %----------------------------------------------------------------------
     %------------- Entrenamiento ------------------------------------------
     time= tic;
-    Yest = KNeighbors(XtrainN,Ytrain,XtestN,Ytest,7,0);
+    %Yest = KNeighbors(XtrainN,Ytrain,XtestN,Ytest,7,0);
+    modelo = fitcknn(XtrainN,Ytrain,'NumNeighbors',5);
+    Yest = predict(modelo, Xtest);
     toc(time);
     %----------------------------------------------------------------------
     %------------- Validaci??n ---------------------------------------------
