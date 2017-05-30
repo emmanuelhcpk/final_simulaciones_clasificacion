@@ -1,6 +1,6 @@
 clc;
 
-numComp = [3 6 9 12 15 18 21 24];
+numComp = [3];
 % 1 : SVM
 % 2 : TreeBagger
 % 3 :NeuralNetwork

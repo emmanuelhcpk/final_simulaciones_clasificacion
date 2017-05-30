@@ -6,7 +6,7 @@ muestras = [X Y];
 
 opts = statset('display','iter');
 
-indices  = sequentialfs(@FisherCriterial2, X, Y);
+indices  = sequentialfs(@criterio, X, Y,'options',opts);
 
 indices = [indices,1];
 

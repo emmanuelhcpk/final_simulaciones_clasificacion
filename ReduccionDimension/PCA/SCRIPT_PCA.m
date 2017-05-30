@@ -1,10 +1,10 @@
 clc;
 
-numComp = [3 6 9 12 15 18 21 24];
+numComp = 1:45;
 % 1 : SVM
 % 2 : TreeBagger
-% 3 :NeuralNetwork
-eleccion = 1; 
+% 3 : NeuralNetwork
+eleccion = 2; 
 
 iters = 10;
 err = zeros(iters,1);
@@ -38,15 +38,10 @@ for nc = 1:size(numComp, 2)
         case 1
             [error ,IC, sen , esp, pres  ] = SVM_Lineal(Xmodel', Ytrainnew, Xval', Yval,1,1);
         case 2
-            [error ,IC, sen , esp, pres  ] = TreeBagger_Dimension(Xmodel', Ytrainnew, Xval', Yval,1,40);
+            [error ,IC, sen , esp, pres  ] = TreeBagger_Dimension(Xmodel', Ytrainnew, Xval', Yval,1,30);
         case 3
             [error ,IC, sen , esp, pres  ] =  neuronWork_Dimension(Xmodel', Ytrainnew, Xval', Yval,2,1);
         end
-%        error = error + functionKN(Xmodel', Ytrainnew, Xval', Yval);
-%        [error ,IC, sen , esp, pres  ] = SVM_Lineal(Xmodel', Ytrainnew, Xval', Yval,1,1);
-%        [error ,IC, sen , esp, pres  ] = TreeBagger_Dimension(Xmodel', Ytrainnew, Xval', Yval,1,40);
-%          [error ,IC, sen , esp, pres  ] =  neuronWork_Dimension(Xmodel', Ytrainnew, Xval', Yval,2,1);
-%         fprintf('Error: %f - IC: %f - Sensi: %f - Espe: %f - Presi: %f NC: %d\n', error,IC,sen,esp,pres, numComp(1, nc));
         
         err(i) = error;
         sensi(i) =  sen;
@@ -74,27 +69,6 @@ for nc = 1:size(numComp, 2)
     bestPCAs(nc).IC_esp = structTemp.IC_esp;
     bestPCAs(nc).pres = structTemp.pres;
     bestPCAs(nc).IC_pres = structTemp.IC_pres;
-
-%     [Xtrain, means, stds] = zscore(Xtrain);
-%     Xtest = normalize(Xtest, means, stds);
-% 
-%     model = pca(Xtrain', bestPCAs(nc).NC);
-%     Xmodel = linproj(Xtrain', model);
-%     Xtest = linproj(Xtest', model);
-%     
-%     switch eleccion
-%     case 1         
-%     [ bestPCAs(nc).errorTest, bestPCAs(nc).IC_test,...
-%         bestPCAs(nc).sen,bestPCAs(nc).esp,bestPCAs(nc).pres] = SVM_Lineal(Xmodel', Ytrain, Xtest', Ytest,1,10);
-%     case 2
-%     [ bestPCAs(nc).errorTest, bestPCAs(nc).IC_test,...
-%         bestPCAs(nc).sen,bestPCAs(nc).esp,bestPCAs(nc).pres] = TreeBagger_Dimension(Xmodel', Ytrain, Xtest', Ytest,10,40); 
-%     case 3
-%     [ bestPCAs(nc).errorTest, bestPCAs(nc).IC_test,...
-%         bestPCAs(nc).sen,bestPCAs(nc).esp,bestPCAs(nc).pres] = neuronWork_Dimension(Xmodel', Ytrain, Xtest', Ytest,40,1);
-%     end  
-%     
-
 end
 for nc = 1:size(numComp, 2)
     bestPCAs(nc)

@@ -1,21 +1,16 @@
-%Script para pruebas de clasificaci??n Taller No 3. Asignatura Simulaci??n de
-%Sistemas, Dpto. Ingenier??a de Sistemas, Universidad de Antioquia.
 clc
-Data = [X Y];
-%Separaci??n de caracter??sticas y variables a predecir
-X = Data(:,1:end-1);
-Y = Data(:,end);
-%--------------------------------------------------------------------------
+
 Nd = size(X,1); % Numero de muestras en la base de datos
 Ntr = ceil(Nd*0.7); % Numero de muestras de entrenamiento
 Nc = 2; %Numero de clases
-Rept = 5;
+Rept = 20;
 tiempo = 0;
 EfiTest= zeros(1, Rept);
 sensibTest= zeros(1, Rept);
 especifi= zeros(1, Rept);
 ErrorTest = zeros(1,Rept);
 timeTotal= tic;
+
 for fold = 1:Rept
     %Separaci??n de los conjuntos de entrenamiento y validaci??n
     [ Xtrain , Ytrain, Xtest, Ytest] = splitData(Data,70);
@@ -27,13 +22,9 @@ for fold = 1:Rept
     %----------------------------------------------------------------------
     %------------- Entrenamiento ------------------------------------------
     timeEntrena= tic;
-    Yest = migausiano(XtrainN,XtestN,Ytrain);
+    Yest = modelo(XtrainN,XtestN,Ytrain);
     toc(timeEntrena);
     %----------------------------------------------------------------------
-    %------------- Validaci??n ---------------------------------------------
-    
-    %Yest = ValidarGMM(Modelo,XtestN);
-    
    %-----------------------------------------------------------------------
    %-------------- C??lculo del error --------------------------------------
    timeEntrena= tic;
