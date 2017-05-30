@@ -1,6 +1,5 @@
 
-% Data = DatosBalanceados;
-Data = [X Y]%DatosBalanceados;
+Data = [X Y]
 %Separaci??n de caracter??sticas y variables a predecir
 
 %--------------------------------------------------------------------------
@@ -9,7 +8,7 @@ Rept = 10;
 Nc = 2 ;% n??mero de clases
 tiempo = 0;
 EfiTest= zeros(1, Rept);
-NumArboles = 10;
+NumArboles = 50;
 sensibTest= zeros(1, Rept);
 especifi= zeros(1, Rept);
 ErrorTest = zeros(1,Rept);

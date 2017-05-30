@@ -1,16 +1,10 @@
-%Script para pruebas de clasificaci??n Taller No 3. Asignatura Simulaci??n de
-%Sistemas, Dpto. Ingenier??a de Sistemas, Universidad de Antioquia.
-
 Data = [X Y];
-%Separa
-%Separaci??n de caracter??sticas y variables a predecir
 
-%--------------------------------------------------------------------------
 Nd = size(X,1); % N??mero de muestras en la base de datos
 Ntr = ceil(Nd*0.7); % N??mero de muestras de entrenamiento
 Nc = size(unique(Y),1); %N??mero de clases
 Rept = 10;
-K= 20;
+K= 50;
 EfiTest= zeros(1, Rept);
 sensibTest= zeros(1, Rept);
 especifi= zeros(1, Rept);

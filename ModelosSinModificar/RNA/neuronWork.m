@@ -1,24 +1,20 @@
+%X = X(:,[4,9,10,14,18,20,13,29,31,33]);
 
-%                     P = XtrainN';
-%                     T = Ytrain';
-%                     Xval = XvalN';           
-%                     Yval = Yval';
-%                     Nc = 2;
-
-Npeceptrons = 40;
+Npeceptrons = 50;
 iter = 10;
 eficiencia = zeros(10,1);
 error = zeros(10,1);
 sensibilidad = zeros(10,1);
 especificidad = zeros(10,1);
 presicion = zeros(10,1);
+%X = X(:,[5 35]);
 Data = [X Y];
 
 for j = 1:iter
 
 [ Xtrain , Ytrain, Xtest, Ytest] = splitData(Data,70);
 %----------------------------------------------------------------------
-%------------- Normalizaci??n ------------------------------------------
+%------------- Normalizacion ------------------------------------------
 [XtrainN,mu,sigma] = zscore(Xtrain);
 XtestN = (Xtest - repmat(mu,size(Xtest,1),1))./repmat(sigma,size(Xtest,1),1);
 
