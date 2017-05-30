@@ -16,7 +16,7 @@ for fold = 1:Rept
     [ Xtrain , Ytrain, Xtest, Ytest] = splitData(Data,70);
  
     %----------------------------------------------------------------------
-    %------------- Normalizaci??n ------------------------------------------
+    %------------- Normalizaci?n ------------------------------------------
     [XtrainN,mu,sigma] = zscore(Xtrain);
     XtestN = (Xtest - repmat(mu,size(Xtest,1),1))./repmat(sigma,size(Xtest,1),1);
     %----------------------------------------------------------------------
